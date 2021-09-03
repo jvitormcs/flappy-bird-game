@@ -69,9 +69,10 @@ function fazColisao (flappyBird, chao) {
   const chaoY = chao.y;
   if (flappyBirdY >= chaoY) {
     return true;
+  }else{
+    return false; 
   }
   
-  return false; 
 };
 
 const flappyBird = {
