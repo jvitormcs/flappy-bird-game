@@ -60,7 +60,7 @@ function criaChao() {
 
     atualiza() {
       const movimentoChao = 1;
-      const repeteChao = chao.largura / 2;
+      const repeteChao = chao.largura / 4;
       const movimentacao = chao.x - movimentoChao;
 
       chao.x = movimentacao % repeteChao;
@@ -339,9 +339,9 @@ const Telas = {
 Telas.JOGO = {
   desenha() {
     planoDeFundo.desenha();
+    globais.canos.desenha();
     globais.chao.desenha();
     globais.flappyBird.desenha();
-    globais.canos.desenha();
   },
 
   click() {
