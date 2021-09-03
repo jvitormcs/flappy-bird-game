@@ -1,5 +1,8 @@
 console.log('[JoaoVitor] Flappy Bird');
 
+const somHIT = new Audio();
+somHIT.src = './efeitos/hit.wav';
+
 const sprites = new Image();
 sprites.src = './sprites.png';
 
@@ -74,6 +77,8 @@ function fazColisao (flappyBird, chao) {
   
 };
 
+function criaFlappyBird () {
+  
 const flappyBird = {
   spriteX: 0,
   spriteY: 0,
@@ -89,6 +94,11 @@ const flappyBird = {
   gravidade: 0.28,
   atualiza() {
     if (fazColisao(flappyBird, chao)) {
+      somHIT.play();
+
+      setTimeout(()=> {
+        mudaParaTela(Telas.INICIO);
+      }, 500)
       return;
     }
 
@@ -107,6 +117,9 @@ const flappyBird = {
     );
   }
 }
+  return flappyBird;
+};
+
 
 
 const mensagemGetReady  = {
@@ -133,17 +146,26 @@ const mensagemGetReady  = {
 // [Telas]
 //
 
+const globais = {};
 let telaAtiva = {};
 function mudaParaTela(novaTela) {
   telaAtiva = novaTela;
+
+  if(telaAtiva.inicializa){
+    telaAtiva.inicializa();
+  }
 };
 
 const Telas = {
   INICIO: {
+    inicializa () {
+     globais.flappyBird = criaFlappyBird();
+    },
+
     desenha () {
       planoDeFundo.desenha();
       chao.desenha();
-      flappyBird.desenha();
+      globais.flappyBird.desenha();
       mensagemGetReady.desenha();
     },
 
@@ -161,15 +183,15 @@ Telas.JOGO = {
   desenha () {
     planoDeFundo.desenha();
     chao.desenha();
-    flappyBird.desenha();
+    globais.flappyBird.desenha();
   },
 
   click() {
-    flappyBird.pula();
+    globais.flappyBird.pula();
   },
 
   atualiza() {
-    flappyBird.atualiza();
+    globais.flappyBird.atualiza();
   }
 }
 
