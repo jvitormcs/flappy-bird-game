@@ -65,13 +65,12 @@ const chao = {
 };
 
 function fazColisao (flappyBird, chao) {
-  const flappyBirdY = flappyBird.y + flappyBird.atualiza;
+  const flappyBirdY = flappyBird.y + flappyBird.altura;
   const chaoY = chao.y;
   if (flappyBirdY >= chaoY) {
     return true;
-  }else{
-    return false; 
   }
+  return false; 
   
 };
 
@@ -90,7 +89,6 @@ const flappyBird = {
   gravidade: 0.28,
   atualiza() {
     if (fazColisao(flappyBird, chao)) {
-      console.log ("Fez Colisão")
       return;
     }
 
