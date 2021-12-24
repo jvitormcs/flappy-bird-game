@@ -1,4 +1,3 @@
-console.log("[JoaoVitor] Flappy Bird");
 
 let frames = 0;
 const somHIT = new Audio();
@@ -431,7 +430,7 @@ window.addEventListener("click", () => {
   }
 });
 
-window.addEventListener('keydown', function(e) {
+window.addEventListener('keydown', (e) => {
   if (telaAtiva.click && !e.repeat && e.code === 'Space') {
     telaAtiva.click();
   }
